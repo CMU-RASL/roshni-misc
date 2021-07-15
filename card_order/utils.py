@@ -142,7 +142,7 @@ def calc_hyp_removed(all_hyp, hyp_valid, true_hyp, test_card):
 
     return hyp_removed, hyp_removed_ind
 
-def create_card_order(card_num, true_hyp, all_hyp, cards):
+def create_card_order(card_num, true_hyp, all_hyp, cards, best_card=True):
     
     #Initialize variables
     card_order = np.zeros((card_num)).astype('int')
@@ -170,6 +170,14 @@ def create_card_order(card_num, true_hyp, all_hyp, cards):
                 hyp_removed_ind.append(tmp2)
 
         #Cards eliminating the maximum number of hypotheses
+        max_val = np.max(num_hyp_removed)
+        max_inds = np.where(num_hyp_removed == max_val)[0]
+
+        #Replace the highest number with -10 and repeat
+        neg_inds = np.where(num_hyp_removed == -10)[0]
+        if max_inds.shape[0] + neg_inds.shape[0] < 81 and not best_card:
+            num_hyp_removed[max_inds] = -10
+
         max_val = np.max(num_hyp_removed)
         max_inds = np.where(num_hyp_removed == max_val)[0]
         equiv_cards_arr[ind] = len(max_inds)
@@ -211,6 +219,6 @@ def create_card_order(card_num, true_hyp, all_hyp, cards):
         hyp_valid[hyp_removed_ind[current_card_ind]] = 0
 
         num_bins[current_bin] += 1
-        # print('Card', ind, '-', card_order[ind], card_str(cards[card_order[ind],:,:], props), 'Bin', current_bin)
+        # print('Card', ind, '-', card_order[ind], card_str(cards[card_order[ind],:,:], all_props()), 'Bin', current_bin)
 
     return card_order, num_hypotheses_arr, equiv_cards_arr, prob_arr, bin_order
