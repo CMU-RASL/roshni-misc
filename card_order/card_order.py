@@ -118,16 +118,16 @@ def create_plots(rule, tot_iters):
     ax[0].errorbar(np.arange(card_num), prob_mean, yerr=prob_std)
     ax[0].errorbar(np.arange(card_num), prob_mean_best, yerr=prob_std_best)
     ax[0].set_title('Iterations ' + str(tot_iters) + ' with 1-std around mean shown')
-    ax[0].set_ylabel('Correctness Probability for card')
+    ax[0].set_ylabel('Prob')
 
     ax[1].errorbar(np.arange(card_num), hypotheses_mean, yerr=hypotheses_std)
     ax[1].errorbar(np.arange(card_num), hypotheses_mean_best, yerr=hypotheses_std_best)
-    ax[1].set_ylabel('Remaining Hypotheses before card')
+    ax[1].set_ylabel('Hyp Remaining')
 
     ax[2].errorbar(np.arange(card_num), equiv_cards_mean, yerr=equiv_cards_std)
     ax[2].errorbar(np.arange(card_num), equiv_cards_mean_best, yerr=equiv_cards_std_best)
     ax[2].legend(['Suboptimal Card', 'Optimal Card'])
-    ax[2].set_ylabel('Equivalent Cards')
+    ax[2].set_ylabel('Equiv Cards')
 
     plt.savefig(name+'.png')
     np.savez(name+'.npz', all_prob=all_prob, all_num_hypotheses=all_num_hypotheses, all_equiv_cards=all_equiv_cards,
