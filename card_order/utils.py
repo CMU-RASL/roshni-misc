@@ -143,7 +143,6 @@ def calc_hyp_removed(all_hyp, hyp_valid, true_hyp, test_card):
     return hyp_removed, hyp_removed_ind
 
 def create_card_order(card_num, true_hyp, all_hyp, cards, best_card=True):
-    
     #Initialize variables
     card_order = np.zeros((card_num)).astype('int')
     bin_order = np.zeros((card_num)).astype('int')
@@ -180,7 +179,10 @@ def create_card_order(card_num, true_hyp, all_hyp, cards, best_card=True):
 
         max_val = np.max(num_hyp_removed)
         max_inds = np.where(num_hyp_removed == max_val)[0]
-        equiv_cards_arr[ind] = len(max_inds)
+        if max_val == 0:
+            equiv_cards_arr[ind] = 81 - ind
+        else:
+            equiv_cards_arr[ind] = len(max_inds)
 
         #If choice of more than one optimal card
         if len(max_inds) > 1:

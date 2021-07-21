@@ -132,7 +132,7 @@ def create_plots(rule, tot_iters):
     plt.savefig(name+'.png')
     np.savez(name+'.npz', all_prob=all_prob, all_num_hypotheses=all_num_hypotheses, all_equiv_cards=all_equiv_cards,
                         all_prob_best=all_prob_best, all_num_hypotheses_best=all_num_hypotheses_best, all_equiv_cards_best=all_equiv_cards_best)
-
+    # plt.show()
 
 # res = one_order()
 # fig, ax = plt.subplots(3, 1)
