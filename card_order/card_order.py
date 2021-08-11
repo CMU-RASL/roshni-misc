@@ -11,14 +11,56 @@ def one_order():
 
     #True hypothesis
     blank_hyp = np.zeros((2, 10, 4, 3))
+    
+    #bin, row, prop, val
+    #props = [['red', 'green', 'purple'],['open', 'striped', 'solid'],['diamond', 'oval', 'squiggle'],['one', 'two', 'three']]
 
-    #True hypothesis - diamonds on left, all others on right
-    true_hyp = np.copy(blank_hyp)
-    true_hyp[0, 0, 2, 0] = 1
-    true_hyp[1, 0, 2, 1] = 1
-    true_hyp[1, 1, 2, 2] = 1
+    #Training!
+    #Stripes on left, all others on right
+    # true_hyp = np.copy(blank_hyp)
+    # true_hyp[0, 0, 1, 1] = 1
+    # true_hyp[1, 0, 1, 0] = 1
+    # true_hyp[1, 0, 1, 2] = 1
 
-    #True hypothesis - green-one, red/purple on left, green two/three on right
+    #two-red, green/purple on right, all others on left
+    # true_hyp = np.copy(blank_hyp)
+    # true_hyp[1, 0, 0, 0] = 1 #red
+    # true_hyp[1, 0, 3, 1] = 1 #two
+    # true_hyp[1, 1, 0, 1] = 1 #green
+    # true_hyp[1, 2, 0, 2] = 1 #purple
+
+    # true_hyp[0, 0, 0, 0] = 1 #red
+    # true_hyp[0, 0, 3, 0] = 1 #one
+    # true_hyp[0, 1, 0, 0] = 1 #red
+    # true_hyp[0, 1, 3, 2] = 1 #three
+
+    #one or two on left, all others on right
+    # true_hyp = np.copy(blank_hyp)
+    # true_hyp[0, 0, 3, 0] = 1
+    # true_hyp[0, 1, 3, 1] = 1
+    # true_hyp[1, 0, 3, 2] = 1
+
+    #solid-green on left, solid-red, solid-purple, open, stripes
+    #props = [['red', 'green', 'purple'],['open', 'striped', 'solid'],['diamond', 'oval', 'squiggle'],['one', 'two', 'three']]
+    # true_hyp = np.copy(blank_hyp)
+    # true_hyp[0, 0, 1, 2] = 1 #solid
+    # true_hyp[0, 0, 0, 1] = 1 #green
+
+    # true_hyp[1, 0, 1, 2] = 1 #solid
+    # true_hyp[1, 0, 0, 0] = 1 #red
+    # true_hyp[1, 1, 1, 2] = 1 #solid
+    # true_hyp[1, 1, 0, 2] = 1 #purple
+    # true_hyp[1, 2, 1, 1] = 1 #stripes
+    # true_hyp[1, 2, 1, 0] = 1 #open
+
+    #Study!
+    #Easy - diamonds on left, all others on right
+    # true_hyp = np.copy(blank_hyp)
+    # true_hyp[0, 0, 2, 0] = 1
+    # true_hyp[1, 0, 2, 1] = 1
+    # true_hyp[1, 1, 2, 2] = 1
+
+    #Difficulty - green-one, red/purple on left, green two/three on right
     # true_hyp = np.copy(blank_hyp)
     # true_hyp[0, 0, 0, 1] = 1 #green
     # true_hyp[0, 0, 3, 0] = 1 #one
@@ -134,7 +176,8 @@ def create_plots(rule, tot_iters):
                         all_prob_best=all_prob_best, all_num_hypotheses_best=all_num_hypotheses_best, all_equiv_cards_best=all_equiv_cards_best)
     # plt.show()
 
-# res = one_order()
+res = one_order()
+print(res)
 # fig, ax = plt.subplots(3, 1)
 # ax[0].plot(np.arange(len(res[0])), res[-2])
 # # ax[0].set_title('Iterations ' + str(tot_iters) + ' with 1-std around mean shown')
@@ -147,5 +190,5 @@ def create_plots(rule, tot_iters):
 # ax[2].set_ylabel('Equivalent Cards')
 
 # plt.show()
-create_plots('easy', 50)
-create_plots('difficult', 50)
+# create_plots('easy', 50)
+# create_plots('difficult', 50)
